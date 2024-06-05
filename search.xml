@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>MVVM模型</title>
+      <link href="//2024/06/04/2024-6-4%C2%B7MVVM%E6%A8%A1%E5%9E%8B/"/>
+      <url>//2024/06/04/2024-6-4%C2%B7MVVM%E6%A8%A1%E5%9E%8B/</url>
+      
+        <content type="html"><![CDATA[<h2 id="MVVM模型"><a href="#MVVM模型" class="headerlink" title="MVVM模型"></a>MVVM模型</h2><p>1.M：模型(Model)：对应 data 中的数据</p><p>2.V：视图(View)：模版</p><p>3.VM：视图模型(ViewModel)：Vue 实例对象</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">&lt;title&gt;理解MVVM&lt;/title&gt;</span><br><span class="line">&lt;!-- 引入Vue --&gt;</span><br><span class="line">&lt;script src=&quot;../js/vue.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- </span><br><span class="line">MVVM模型</span><br><span class="line">1. M：模型(Model) ：data中的数据</span><br><span class="line">2. V：视图(View) ：模板代码</span><br><span class="line">3. VM：视图模型(ViewModel)：Vue实例</span><br><span class="line">观察发现：</span><br><span class="line">1.data中所有的属性，最后都出现在了vm身上。</span><br><span class="line">2.vm身上所有的属性 及 Vue原型上所有属性，在Vue模板中都可以直接使用。</span><br><span class="line">--&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 容器 --&gt;</span><br><span class="line">&lt;div id=&quot;root&quot;&gt;</span><br><span class="line">&lt;h1&gt;学校名称:&#123;&#123;name&#125;&#125;&lt;/h1&gt;</span><br><span class="line">&lt;h1&gt;学校地址:&#123;&#123;address&#125;&#125;&lt;/h1&gt;</span><br><span class="line">&lt;!-- &lt;h1&gt;测试1:&#123;&#123;1+1&#125;&#125;&lt;/h1&gt;</span><br><span class="line">&lt;h1&gt;测试2:&#123;&#123;$options&#125;&#125;&lt;/h1&gt;</span><br><span class="line">&lt;h1&gt;测试3:&#123;&#123;$emit&#125;&#125;&lt;/h1&gt;</span><br><span class="line">&lt;h1&gt;测试4:&#123;&#123;_c&#125;&#125;&lt;/h1&gt; --&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">Vue.config.productionTip = false</span><br><span class="line"></span><br><span class="line">const vm = new Vue(&#123;</span><br><span class="line">el: &#x27;#root&#x27;,</span><br><span class="line">data: &#123;</span><br><span class="line">name: &#x27;早安&#x27;,</span><br><span class="line">address: &#x27;杭州&#x27;,</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">console.log(vm);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> JS </tag>
+            
+            <tag> Vue2 </tag>
+            
+            <tag> html </tag>
+            
+            <tag> css3 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Vue2简介</title>
+      <link href="//2024/06/04/2024-6-4%C2%B7vue2%E7%AE%80%E4%BB%8B/"/>
+      <url>//2024/06/04/2024-6-4%C2%B7vue2%E7%AE%80%E4%BB%8B/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Vue是什么？"><a href="#Vue是什么？" class="headerlink" title="Vue是什么？"></a>Vue是什么？</h2><p>一套用于<strong>构建用户界面</strong>的<em>渐进式</em> JavaScript框架</p><blockquote><p>渐进式:Vue可以自厎向上逐层的应用</p><p>简单应用：只需一个轻量小巧的核心库</p><p>复杂应用：可以引入各式各样的Vue插件</p></blockquote><h2 id="Vue的特点"><a href="#Vue的特点" class="headerlink" title="Vue的特点"></a>Vue的特点</h2><p>1、采用组件化模式，提高代码复用率、且让代码更好维护。</p><p>2、声明式编码，让编码人员无需直接操作DOM，提高开发效率。</p><p>3、使用虚拟DOM+优秀的Diff算法，尽量复用DOM节点</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> JS </tag>
+            
+            <tag> Vue2 </tag>
+            
+            <tag> html </tag>
+            
+            <tag> css3 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>tab栏切换</title>
       <link href="//2024/05/29/2024-5-29%C2%B7tab%E6%A0%8F%E5%88%87%E6%8D%A2/"/>
       <url>//2024/05/29/2024-5-29%C2%B7tab%E6%A0%8F%E5%88%87%E6%8D%A2/</url>
@@ -185,42 +235,9 @@
     
     
     <entry>
-      <title>照片</title>
-      <link href="/Gallery/index.html"/>
-      <url>/Gallery/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>关于</title>
       <link href="/about/index.html"/>
       <url>/about/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>电影</title>
-      <link href="/movies/index.html"/>
-      <url>/movies/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>tags</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -240,9 +257,42 @@
     
     
     <entry>
+      <title>照片</title>
+      <link href="/Gallery/index.html"/>
+      <url>/Gallery/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>电影</title>
+      <link href="/movies/index.html"/>
+      <url>/movies/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>音乐</title>
       <link href="/music/index.html"/>
       <url>/music/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>tags</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
