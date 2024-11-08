@@ -4,11 +4,38 @@
   
     
     <entry>
-      <title>线程基本使用</title>
+      <title>java事件处理机制</title>
       <link href="/posts/2024d.html"/>
       <url>/posts/2024d.html</url>
       
-        <content type="html"><![CDATA[<h1>线程基本使用</h1><ul><li><p>创建线程的两种方式</p><ul><li><p>继承Thread类，重写run方法</p></li><li><p>实现Runnable接口，重写run方法</p></li></ul></li></ul>]]></content>
+        <content type="html"><![CDATA[<h1>java事件处理机制</h1><ul><li><p>基本说明</p><p>java事件处理是采取“委派事件模型”。当事件发生时，产生事件的对象，会把此“信息“传递给”事件的监听者“处理，这里所说的”信息“实际上就是java.awt.event 事件类库里某个类所创建的对象，把它称为”事件的对象“。</p></li><li><p>事件处理机制深入理解</p><ol><li><p>几个重要的概念 事件源，事件，事件监听器我们下面来全面的介绍它们。</p></li><li><p>事件源：事件源是一个产生事件的对象，比如按钮，窗口等。</p></li><li><p>事件：事件就是承载事件源状态改变时的对象，比如当键盘事件、鼠标事件、窗口事件等等，会生成一个事件对象，该对象保存着当前事件很多信息，比如KeyEvent对象有含有被按下键的Code值。java.awt.event包 和javax.swing.event包中定义了各种事件类型</p></li><li><p><img src="C:%5CUsers%5Czaoan%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20241029093830345.png" alt="image-20241029093830345"></p></li><li><p>事件监听器接口：</p><p>(1)当事件源产生一个事件，可以传送给事件监听者处理</p><p>(2)事件监听者实际上就是一个类，该类实现了某个事件监听器接口，比如案例中MyPanle就是一个类，它实现了KeyListener接口，它就是可以作为一个事件监听者，对接受到的事件进行处理</p><p>(3)事件监听器接口有多种，不同的事件监听接口可以监听不同的事件，一个类可以实现多个监听接口</p><p>(4)这些接口在java.awt.event包和javax.swing.event包中</p></li></ol></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> java多线程笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> 事件处理 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>java线程基本使用</title>
+      <link href="/posts/2024d.html"/>
+      <url>/posts/2024d.html</url>
+      
+        <content type="html"><![CDATA[<h1>java线程基本使用</h1><ul><li><p>创建线程的两种方式</p><ul><li><p>继承Thread类，重写run方法</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.hspedu.threaduse;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Thread01</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">//创建Cat对象，可以当线程使用</span></span><br><span class="line">        <span class="type">Cat</span> <span class="variable">cat</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Cat</span>();</span><br><span class="line">        cat.start();<span class="comment">//启动线程=&gt;最终会执行cat的run方法</span></span><br><span class="line"><span class="comment">//        cat.run();//run方法就是一个普通的方法，没有真正的启动一个线程，就会把run方法执行完毕，才向下执行</span></span><br><span class="line">        <span class="comment">//说明：当main线程启动一个子线程 Thread-0，主线程不会阻塞，会继续执行</span></span><br><span class="line">        <span class="comment">//这时 主线程和子线程是交替执行..</span></span><br><span class="line">        System.out.println(<span class="string">&quot;主线程继续执行&quot;</span>+Thread.currentThread().getName());<span class="comment">//名字main</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt;<span class="number">40</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;主线程 i=&quot;</span>+i+Thread.currentThread().getName());</span><br><span class="line">            <span class="comment">//让主线程休眠</span></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//1、当一个类继承了 Thread累，该类就可以当做线程了</span></span><br><span class="line"><span class="comment">//2、我们会重写run方法，写上自己的业务代码</span></span><br><span class="line"><span class="comment">//3、run Thread 类 实现了  Runnable 接口的run方法</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Cat</span> <span class="keyword">extends</span> <span class="title class_">Thread</span>&#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">times</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123; <span class="comment">//重写run类，写上自己的业务逻辑</span></span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>)&#123;</span><br><span class="line">            <span class="comment">//该线程每隔1秒。在控制台输出</span></span><br><span class="line">            System.out.println(<span class="string">&quot;test,线程输出&quot;</span>+(++times)+Thread.currentThread().getName());</span><br><span class="line">            <span class="comment">//让该线程休眠1秒 Ctrl+alt+t</span></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(times ==<span class="number">80</span>)&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li><li><p>实现Runnable接口，重写run方法</p></li></ul></li></ul>]]></content>
       
       
       <categories>
@@ -23,6 +50,87 @@
             <tag> java </tag>
             
             <tag> 多线程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>java线程相关概念</title>
+      <link href="/posts/2024d.html"/>
+      <url>/posts/2024d.html</url>
+      
+        <content type="html"><![CDATA[<h1>java线程相关概念</h1><ul><li><p>进程</p><ul><li><p>进程是指运行中的程序，比如我们使用QQ，就启动了一个进程，操作系统就会为该进程分配内存空间。当我们使用迅雷，又启动了一个进程，操作系统将为迅雷分配新的内存空间。</p></li><li><p>进程是程序的一次执行过程，或是正在运行的一个程序。是动态过程：有它自身的产生、存在和消亡的过程。</p></li></ul></li><li><p>什么是线程</p></li><li><p>线程由进程创建的，是进程的一个实体。</p></li><li><p>一个进程可以拥有多个线程。</p></li><li><p>其他相关概念</p><ul><li>单线程：同一时刻，只允许执行一个线程</li><li>多线程：同一时刻，可以执行多个线程，比如：一个qq进程，可以同时打开多个聊天窗口，一个迅雷进程，可以同时下载多个文件</li><li>并发：同一时刻，多个任务交替执行，造成一种“貌似同时”的错觉，简单的说，单核cpu实现的多任务就是并发。</li><li>并行：同一时刻，多个任务同时执行。多核cpu可以实现并行。</li></ul></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> java多线程笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> 多线程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>java绘图坐标体系</title>
+      <link href="/posts/2024d.html"/>
+      <url>/posts/2024d.html</url>
+      
+        <content type="html"><![CDATA[<h1>java绘图坐标体系</h1><ul><li><p>介绍</p><ul><li>(x,y) 在java坐标系中，第一个是x坐标，表示当前位置为水平方向，距离坐标原点x个像素；第二个是y坐标，表示当前位置为垂直方向，距离坐标原点y个像素。</li></ul></li><li><p>坐标体系-像素</p><ol><li>绘图概念-像素，一个像素等于多少厘米？</li><li>计算机在屏幕上显示的内容都是由屏幕上的每个像素组成的。例如，计算机显示器的分辨率是800x600，表示计算机屏幕上的每一行由800个点组成，共有600行，整个计算机屏幕共有480 000个像素。像素是一个<em>密度单位</em>，而厘米是<em>长度单位</em>，两者无法比较。</li></ol></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> java多线程笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> 绘图 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>java绘图技术</title>
+      <link href="/posts/2024d.html"/>
+      <url>/posts/2024d.html</url>
+      
+        <content type="html"><![CDATA[<h1>java绘图技术</h1><ul><li><p>绘图原理</p><ul><li>Component类提供了两个和绘图相关最重要的方法:</li></ul><ol><li>paint(Graphics g) 绘制组件的外观</li><li>repaint()刷新组件的外观。</li></ol><ul><li><p>当组件第一次在屏幕显示的时候，程序会自动的调用paint()方法来绘制组件。</p></li><li><p>以下情况paint()将会被调用:</p></li></ul><ol><li>窗口最小化，再最大化</li><li>窗口的大小发生变化</li><li>repaint函数被调用</li></ol></li><li><p>Graphics类</p><ol><li><p>画直线 drawLine(int x1,int y1,int x2,int y2)</p></li><li><p>画矩形边框 drawRect(int x, int y, int width, int height)</p></li><li><p>画椭圆边框 drawOval(int x, int y, int width, int height)</p></li><li><p>填充矩形 fillRect(int x, int y, int width, int height)</p></li><li><p>填充椭圆 fillOval(int x, int y, int width, int height)</p></li><li><p>画图片 drawlmage(lmage img, int x, int y, …)</p></li><li><p>画字符串 drawString(String str, int x, int y)</p></li><li><p>设置画笔的字体 setFont(Font font)</p></li><li><p>设置画笔的颜色 setColor(Color c)</p><hr><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.hspedu.draw;</span><br><span class="line"><span class="keyword">import</span> javax.swing.*;</span><br><span class="line"><span class="keyword">import</span> java.awt.*;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DrawCircle</span> <span class="keyword">extends</span> <span class="title class_">JFrame</span>&#123; <span class="comment">//对应窗口</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//    定义一个面板</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">MyPanel</span> <span class="variable">mp</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">DrawCircle</span>();</span><br><span class="line">        System.out.println(<span class="string">&quot;退出程序&quot;</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">DrawCircle</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 初始化面板</span></span><br><span class="line">        mp = <span class="keyword">new</span> <span class="title class_">MyPanel</span>();</span><br><span class="line"><span class="comment">//        把面板放入窗口</span></span><br><span class="line">        <span class="built_in">this</span>.add(mp);</span><br><span class="line"><span class="comment">//        设置窗口大小</span></span><br><span class="line">        <span class="built_in">this</span>.setSize(<span class="number">400</span>,<span class="number">300</span>);</span><br><span class="line">        <span class="built_in">this</span>.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span><br><span class="line">        <span class="built_in">this</span>.setVisible(<span class="literal">true</span>);<span class="comment">//可以显示</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//1、先定义一个MyPanel,集成JPanel类，，画图形.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyPanel</span> <span class="keyword">extends</span> <span class="title class_">JPanel</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">paint</span><span class="params">(Graphics g)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.paint(g); <span class="comment">//调用父类的方法完成初始化.</span></span><br><span class="line">        <span class="comment">//画一个圆形</span></span><br><span class="line"><span class="comment">//        g.drawOval(100,100,100,100);</span></span><br><span class="line"><span class="comment">//        g.drawLine(10,10,100,0);</span></span><br><span class="line"><span class="comment">//        g.drawRect(10,10,100,100);</span></span><br><span class="line"><span class="comment">//        g.setColor(Color.blue);</span></span><br><span class="line"><span class="comment">//        g.fillRect(10,10,100,100);</span></span><br><span class="line"><span class="comment">//        g.setColor(Color.red);</span></span><br><span class="line"><span class="comment">//        g.fillOval(10,10,100,100);</span></span><br><span class="line"><span class="comment">//        画图片</span></span><br><span class="line"><span class="comment">//        1、获取图片资源</span></span><br><span class="line"><span class="comment">//        Image image = Toolkit.getDefaultToolkit().getImage(Panel.class.getResource(&quot;/bg.jpg&quot;));</span></span><br><span class="line"><span class="comment">//        g.drawImage(image,10,10,300,221,this);</span></span><br><span class="line">        g.setColor(Color.red);</span><br><span class="line">        g.setFont(<span class="keyword">new</span> <span class="title class_">Font</span>(<span class="string">&quot;幼圆&quot;</span>,Font.BOLD,<span class="number">50</span>));</span><br><span class="line">        g.drawString(<span class="string">&quot;野兽先辈&quot;</span>,<span class="number">200</span>,<span class="number">200</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li></ol></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> java多线程笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> 绘图 </tag>
             
         </tags>
       
