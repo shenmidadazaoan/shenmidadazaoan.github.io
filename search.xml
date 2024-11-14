@@ -5,6 +5,64 @@
     
     <entry>
       <title>java线程基本使用</title>
+      <link href="/posts/20240007d.html"/>
+      <url>/posts/20240007d.html</url>
+      
+        <content type="html"><![CDATA[<h1>互斥锁</h1><h4 id="基本介绍">基本介绍</h4><ol><li>java语言中，引入了对象互斥锁的概念，来保证共享数据操作的完整性。</li><li>每个对象都对应于一个可称为 “互斥锁” 的标记，这个标记用来保证在任一时刻，只能有一个线程访问该对象。</li><li>关键字synchronized 来与对象的互斥锁联系。当某个对象用synchronized 修饰时，表明该对象在任一时刻只能由一个线程访问。</li><li>同步的局限性：导致程序的执行效率要降低。</li><li>同步方法（非静态的）的锁可以是this，也可以是其他对象（要求是同一对象）</li><li>同步方法（静态的）的锁为当前类本身。</li></ol><h4 id="注意事项和细节">注意事项和细节</h4><ol><li><p>同步方法如果没有使用static修饰：默认锁对象为this</p></li><li><p>如果方法使用static修饰，默认锁对象：当前类.class</p></li><li><p>实现的落地步骤：</p><p>需要先分析上锁的代码</p><p>选择<em><strong>同步代码块</strong></em>或者同步方法</p><p>要求多个 线程的锁对象为同一个即可！</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> java多线程笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> 多线程 </tag>
+            
+            <tag> 互斥锁 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>java线程基本使用</title>
+      <link href="/posts/20240008d.html"/>
+      <url>/posts/20240008d.html</url>
+      
+        <content type="html"><![CDATA[<h1>线程死锁</h1>]]></content>
+      
+      
+      <categories>
+          
+          <category> java多线程笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> 多线程 </tag>
+            
+            <tag> 线程死锁 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>java线程基本使用</title>
       <link href="/posts/20240005d.html"/>
       <url>/posts/20240005d.html</url>
       
@@ -110,11 +168,11 @@
     
     
     <entry>
-      <title>java绘图技术</title>
-      <link href="/posts/20240001d.html"/>
-      <url>/posts/20240001d.html</url>
+      <title>java绘图坐标体系</title>
+      <link href="/posts/20240002d.html"/>
+      <url>/posts/20240002d.html</url>
       
-        <content type="html"><![CDATA[<h1>java 绘图技术</h1><ul><li><p>绘图原理</p><ul><li>Component 类提供了两个和绘图相关最重要的方法:</li></ul><ol><li>paint(Graphics g) 绘制组件的外观</li><li>repaint()刷新组件的外观。</li></ol><ul><li><p>当组件第一次在屏幕显示的时候，程序会自动的调用 paint()方法来绘制组件。</p></li><li><p>以下情况 paint()将会被调用:</p></li></ul><ol><li>窗口最小化，再最大化</li><li>窗口的大小发生变化</li><li>repaint 函数被调用</li></ol></li><li><p>Graphics 类</p><ol><li><p>画直线 drawLine(int x1,int y1,int x2,int y2)</p></li><li><p>画矩形边框 drawRect(int x, int y, int width, int height)</p></li><li><p>画椭圆边框 drawOval(int x, int y, int width, int height)</p></li><li><p>填充矩形 fillRect(int x, int y, int width, int height)</p></li><li><p>填充椭圆 fillOval(int x, int y, int width, int height)</p></li><li><p>画图片 drawlmage(lmage img, int x, int y, …)</p></li><li><p>画字符串 drawString(String str, int x, int y)</p></li><li><p>设置画笔的字体 setFont(Font font)</p></li><li><p>设置画笔的颜色 setColor(Color c)</p><hr><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.hspedu.draw;</span><br><span class="line"><span class="keyword">import</span> javax.swing.*;</span><br><span class="line"><span class="keyword">import</span> java.awt.*;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DrawCircle</span> <span class="keyword">extends</span> <span class="title class_">JFrame</span>&#123; <span class="comment">//对应窗口</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//    定义一个面板</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">MyPanel</span> <span class="variable">mp</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">DrawCircle</span>();</span><br><span class="line">        System.out.println(<span class="string">&quot;退出程序&quot;</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">DrawCircle</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 初始化面板</span></span><br><span class="line">        mp = <span class="keyword">new</span> <span class="title class_">MyPanel</span>();</span><br><span class="line"><span class="comment">//        把面板放入窗口</span></span><br><span class="line">        <span class="built_in">this</span>.add(mp);</span><br><span class="line"><span class="comment">//        设置窗口大小</span></span><br><span class="line">        <span class="built_in">this</span>.setSize(<span class="number">400</span>,<span class="number">300</span>);</span><br><span class="line">        <span class="built_in">this</span>.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span><br><span class="line">        <span class="built_in">this</span>.setVisible(<span class="literal">true</span>);<span class="comment">//可以显示</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//1、先定义一个MyPanel,集成JPanel类，，画图形.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyPanel</span> <span class="keyword">extends</span> <span class="title class_">JPanel</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">paint</span><span class="params">(Graphics g)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.paint(g); <span class="comment">//调用父类的方法完成初始化.</span></span><br><span class="line">        <span class="comment">//画一个圆形</span></span><br><span class="line"><span class="comment">//        g.drawOval(100,100,100,100);</span></span><br><span class="line"><span class="comment">//        g.drawLine(10,10,100,0);</span></span><br><span class="line"><span class="comment">//        g.drawRect(10,10,100,100);</span></span><br><span class="line"><span class="comment">//        g.setColor(Color.blue);</span></span><br><span class="line"><span class="comment">//        g.fillRect(10,10,100,100);</span></span><br><span class="line"><span class="comment">//        g.setColor(Color.red);</span></span><br><span class="line"><span class="comment">//        g.fillOval(10,10,100,100);</span></span><br><span class="line"><span class="comment">//        画图片</span></span><br><span class="line"><span class="comment">//        1、获取图片资源</span></span><br><span class="line"><span class="comment">//        Image image = Toolkit.getDefaultToolkit().getImage(Panel.class.getResource(&quot;/bg.jpg&quot;));</span></span><br><span class="line"><span class="comment">//        g.drawImage(image,10,10,300,221,this);</span></span><br><span class="line">        g.setColor(Color.red);</span><br><span class="line">        g.setFont(<span class="keyword">new</span> <span class="title class_">Font</span>(<span class="string">&quot;幼圆&quot;</span>,Font.BOLD,<span class="number">50</span>));</span><br><span class="line">        g.drawString(<span class="string">&quot;野兽先辈&quot;</span>,<span class="number">200</span>,<span class="number">200</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li></ol></li></ul>]]></content>
+        <content type="html"><![CDATA[<h1>java 绘图坐标体系</h1><ul><li><p>介绍</p><ul><li>(x,y) 在 java 坐标系中，第一个是 x 坐标，表示当前位置为水平方向，距离坐标原点 x 个像素；第二个是 y 坐标，表示当前位置为垂直方向，距离坐标原点 y 个像素。</li></ul></li><li><p>坐标体系-像素</p><ol><li>绘图概念-像素，一个像素等于多少厘米？</li><li>计算机在屏幕上显示的内容都是由屏幕上的每个像素组成的。例如，计算机显示器的分辨率是 800x600，表示计算机屏幕上的每一行由 800 个点组成，共有 600 行，整个计算机屏幕共有 480 000 个像素。像素是一个<em>密度单位</em>，而厘米是<em>长度单位</em>，两者无法比较。</li></ol></li></ul>]]></content>
       
       
       <categories>
@@ -137,11 +195,11 @@
     
     
     <entry>
-      <title>java绘图坐标体系</title>
-      <link href="/posts/20240002d.html"/>
-      <url>/posts/20240002d.html</url>
+      <title>java绘图技术</title>
+      <link href="/posts/20240001d.html"/>
+      <url>/posts/20240001d.html</url>
       
-        <content type="html"><![CDATA[<h1>java 绘图坐标体系</h1><ul><li><p>介绍</p><ul><li>(x,y) 在 java 坐标系中，第一个是 x 坐标，表示当前位置为水平方向，距离坐标原点 x 个像素；第二个是 y 坐标，表示当前位置为垂直方向，距离坐标原点 y 个像素。</li></ul></li><li><p>坐标体系-像素</p><ol><li>绘图概念-像素，一个像素等于多少厘米？</li><li>计算机在屏幕上显示的内容都是由屏幕上的每个像素组成的。例如，计算机显示器的分辨率是 800x600，表示计算机屏幕上的每一行由 800 个点组成，共有 600 行，整个计算机屏幕共有 480 000 个像素。像素是一个<em>密度单位</em>，而厘米是<em>长度单位</em>，两者无法比较。</li></ol></li></ul>]]></content>
+        <content type="html"><![CDATA[<h1>java 绘图技术</h1><ul><li><p>绘图原理</p><ul><li>Component 类提供了两个和绘图相关最重要的方法:</li></ul><ol><li>paint(Graphics g) 绘制组件的外观</li><li>repaint()刷新组件的外观。</li></ol><ul><li><p>当组件第一次在屏幕显示的时候，程序会自动的调用 paint()方法来绘制组件。</p></li><li><p>以下情况 paint()将会被调用:</p></li></ul><ol><li>窗口最小化，再最大化</li><li>窗口的大小发生变化</li><li>repaint 函数被调用</li></ol></li><li><p>Graphics 类</p><ol><li><p>画直线 drawLine(int x1,int y1,int x2,int y2)</p></li><li><p>画矩形边框 drawRect(int x, int y, int width, int height)</p></li><li><p>画椭圆边框 drawOval(int x, int y, int width, int height)</p></li><li><p>填充矩形 fillRect(int x, int y, int width, int height)</p></li><li><p>填充椭圆 fillOval(int x, int y, int width, int height)</p></li><li><p>画图片 drawlmage(lmage img, int x, int y, …)</p></li><li><p>画字符串 drawString(String str, int x, int y)</p></li><li><p>设置画笔的字体 setFont(Font font)</p></li><li><p>设置画笔的颜色 setColor(Color c)</p><hr><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.hspedu.draw;</span><br><span class="line"><span class="keyword">import</span> javax.swing.*;</span><br><span class="line"><span class="keyword">import</span> java.awt.*;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DrawCircle</span> <span class="keyword">extends</span> <span class="title class_">JFrame</span>&#123; <span class="comment">//对应窗口</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//    定义一个面板</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">MyPanel</span> <span class="variable">mp</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">DrawCircle</span>();</span><br><span class="line">        System.out.println(<span class="string">&quot;退出程序&quot;</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">DrawCircle</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 初始化面板</span></span><br><span class="line">        mp = <span class="keyword">new</span> <span class="title class_">MyPanel</span>();</span><br><span class="line"><span class="comment">//        把面板放入窗口</span></span><br><span class="line">        <span class="built_in">this</span>.add(mp);</span><br><span class="line"><span class="comment">//        设置窗口大小</span></span><br><span class="line">        <span class="built_in">this</span>.setSize(<span class="number">400</span>,<span class="number">300</span>);</span><br><span class="line">        <span class="built_in">this</span>.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span><br><span class="line">        <span class="built_in">this</span>.setVisible(<span class="literal">true</span>);<span class="comment">//可以显示</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//1、先定义一个MyPanel,集成JPanel类，，画图形.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyPanel</span> <span class="keyword">extends</span> <span class="title class_">JPanel</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">paint</span><span class="params">(Graphics g)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.paint(g); <span class="comment">//调用父类的方法完成初始化.</span></span><br><span class="line">        <span class="comment">//画一个圆形</span></span><br><span class="line"><span class="comment">//        g.drawOval(100,100,100,100);</span></span><br><span class="line"><span class="comment">//        g.drawLine(10,10,100,0);</span></span><br><span class="line"><span class="comment">//        g.drawRect(10,10,100,100);</span></span><br><span class="line"><span class="comment">//        g.setColor(Color.blue);</span></span><br><span class="line"><span class="comment">//        g.fillRect(10,10,100,100);</span></span><br><span class="line"><span class="comment">//        g.setColor(Color.red);</span></span><br><span class="line"><span class="comment">//        g.fillOval(10,10,100,100);</span></span><br><span class="line"><span class="comment">//        画图片</span></span><br><span class="line"><span class="comment">//        1、获取图片资源</span></span><br><span class="line"><span class="comment">//        Image image = Toolkit.getDefaultToolkit().getImage(Panel.class.getResource(&quot;/bg.jpg&quot;));</span></span><br><span class="line"><span class="comment">//        g.drawImage(image,10,10,300,221,this);</span></span><br><span class="line">        g.setColor(Color.red);</span><br><span class="line">        g.setFont(<span class="keyword">new</span> <span class="title class_">Font</span>(<span class="string">&quot;幼圆&quot;</span>,Font.BOLD,<span class="number">50</span>));</span><br><span class="line">        g.drawString(<span class="string">&quot;野兽先辈&quot;</span>,<span class="number">200</span>,<span class="number">200</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li></ol></li></ul>]]></content>
       
       
       <categories>
@@ -235,6 +293,29 @@
     
     
     <entry>
+      <title>文章模版</title>
+      <link href="/posts/d7cf3103.html"/>
+      <url>/posts/d7cf3103.html</url>
+      
+        <content type="html"><![CDATA[<h1>这是一个作者用来写文章的模版</h1>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 摸鱼 </tag>
+            
+            <tag> 闲聊 </tag>
+            
+            <tag> 模版 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>解决黑马ssm框架视频springboot创建工程maven解析慢,没有java8问题</title>
       <link href="/posts/f89d635.html"/>
       <url>/posts/f89d635.html</url>
@@ -252,29 +333,6 @@
             <tag> springboot </tag>
             
             <tag> 黑马 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>文章模版</title>
-      <link href="/posts/d7cf3103.html"/>
-      <url>/posts/d7cf3103.html</url>
-      
-        <content type="html"><![CDATA[<h1>这是一个作者用来写文章的模版</h1>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 摸鱼 </tag>
-            
-            <tag> 闲聊 </tag>
-            
-            <tag> 模版 </tag>
             
         </tags>
       
